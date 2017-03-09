@@ -1,53 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Starter Template with JQuery</title>
+    <title>Trivia Game</title>
 
     <!-- local style sheets needed -->
-  <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/.css" rel="stylesheet" type="text/css">
-   
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
-    
-        <!-- General HTML things -->
+
+    <!-- Gonna try using flexbox this time-->
+    <div class="container">
         <header>
-            <div class="someclass" id="leftfloat">This div floats left in the header</div>
-            <div class="someclass" id="rightfloat">This div floats right in the container</div>
+            <div class="" id="thetitle">Trivia</div>
         </header>
-        <div class="maincontainer" id="verticalalign">I am going to vertically allign this.         
-         </div>
-         <div class="divwithspan" id="spandiv" name"nameifneeded">text text text
-            <span class="spanclass" id="spanid">text in span</span> text text text.
-         </div>
-         <div class="images">
-             <div class="imagesettoheightofdiv" id="">
-                 <img src="assets/images/image.jpg" class="imgsettoheightofdiv" id="">
-             </div>
-             <div class="fillerimage" id="">
-                 <img src="http://placehold.it/350x150" id="thefilerimage">
-             </div>
-             
-         </div>
-          
+        <div class="thetimerstuff">
+            <div class="timer"></div>
+        </div>
+        <div class="" id="questionrightwrong">
+        </div>
+        <div class="body" id="optionspic">
+        </div>
+        <div class="theoptions" id="answer1">Answer 1
+        </div>
+        <div class="theoptions" id="answer2">Answer 1
+        </div>
+        <div class="theoptions" id="answer3">Answer 1
+        </div>
+        <div class="theoptions" id="answer4">Answer 1
+        </div>
+        <div class="result" id="correctincorrect">Option
+        </div>
+        <div class="result" id="vid">
+        </div>
+
+        <div class="body" id="timer">I am going to vertically allign this.
+        </div>
+        <div class="body" id="timer">I am going to vertically allign this.
+        </div>
+        <div class="body" id="timer">I am going to vertically allign this.
+        </div>
+    </div>
+    <div class="body" id="timer">I am going to vertically allign this.
+    </div>
 
 
-        <!-- jQuery link -->
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
-        </script>
-        <script src="assets/javascript/script.js"></script>
-        <script>
+    </div>
+
+    <div class="divwithspan" id="spandiv" name "nameifneeded">text text text
+        <span class="spanclass" id="spanid">text in span</span> text text text.
+    </div>
+    <div class="images">
+        <div class="imagesettoheightofdiv" id="">
+            <img src="assets/images/image.jpg" class="imgsettoheightofdiv" id="">
+        </div>
+        <div class="fillerimage" id="">
+            <img src="http://placehold.it/350x150" id="thefilerimage">
+        </div>
+
+    </div>
+
+
+
+    <!-- jQuery link -->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+    </script>
+    <script src="assets/javascript/script.js"></script>
+    <script>
         // any local javascript that might be needed.
-        
-        
-        </script>
-        
+    </script>
+
 </body>
 
 </html>
