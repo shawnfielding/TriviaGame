@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>South Park Game</title>
+    <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,18 +15,36 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css"> </head>
 
 <body>
+    <div class="jumbotron">
+      Tough Trivia Test!
+    </div>
     <div class="container">
-        <div class="row" id="row1">
-            <div class="col-xs-12 col-md-7" id="title">South Park Counting Game</div>
-            <div class="col-xs-12 col-md-5" id="description">
-                <p>Each of the characters below is worth a number.</p>
-                <p>Click on them to add up to the goal number.</p>
-                <p>If you match you win! If you go over you lose.</p>
-                <p>The values of the characters changes every time, and so does the goal.</p>
-                <p>Good luck!</p>
+        <div class="row" id="interGame">
+            <div class="col-xs-12 col-md-offset-4 col-md-8  startPage" id="interStatement">Are you ready for a challenge?
             </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 startPage" id="interButton">
+                <button type="button" class="btn btn-primary btn-lg" onclick="runGame()" id="">BRING IT ON!!!</button>
+            </div>
+            <dic
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage" id="clock">
+                Seconds Remaining: <span id="seconds"></span>
+            </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage" id="question">
+            </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage a1" id="">
+            </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage a2" id="">
+            </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage a3" id="">
+            </div>
+            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage a4" id="">
+            </div>
+
+
+
+
         </div>
-        <div class="row top-buffer" id="row2">
+        <div class="row top-buffer" id="timerArea">
             <div class="col-xs-12 col-sm-3 col-sm-offset-3">
                 <p> Total Wins: <span name="totalWinsNumber" id="TotalWinsNumber"></span></p>
                 <p> Total Losses: <span name="TotalLossesNumber" id="TotalLossesNumber"></span></p>
@@ -50,7 +68,139 @@
                 <img src="assets/images/kenny.jpg" alt="Kenny">
             </div>
         </div>
-        <script src="assets/javascript/game.js"></script>
+        <!-- <script src="assets/javascript/app.js"></script> -->
+        <script>
+        $(document).ready(function() {
+                    var countNum = 10;
+                    var totalWins = 0;
+                    var totalLosses = 0;
+                    var q1 = {
+                        theQ: "Here is Question 1",
+                        right: "Here is the right answer.",
+                        wrong: ["wrong answer 1", "wrong answer 2", "wrong answer 3"]
+                    }
+                    var q2 = {
+                        theQ: "Here is Question 2",
+                        right: "Here is the right answer.",
+                        wrong: ["wrong answer 1", "wrong answer 2", "wrong answer 3"]
+                    }
+                    var q3 = {
+                        theQ: "Here is Question 3",
+                        right: "Here is the right answer.",
+                        wrong: ["wrong answer 1", "wrong answer 2", "wrong answer 3"]
+                    }
+                    var q4 = {
+                        theQ: "Here is Question 4",
+                        right: "Here is the right answer.",
+                        wrong: ["wrong answer 1", "wrong answer 2", "wrong answer 3"]
+                    }
+                    var q5 = {
+                        theQ: "Here is Question 5",
+                        right: "Here is the right answer.",
+                        wrong: ["wrong answer 1", "wrong answer 2", "wrong answer 3"]
+                    }
+
+                    var questions = [q1, q2, q3, q4, q5];
+                    var answers =
+                    console.log(questions);
+                    Randomize(questions);
+
+
+                    //show main screen
+
+                    //reset/start game
+
+
+                    //run through the questions each
+                    //show the answers
+                    //determine if answer is right or wrong or timed out.
+
+                    //end the game  again?
+
+                    function Randomize(x) {
+                        questions = randomOrder(x);
+                    }
+
+                    function randomOrder(x) {
+                        var tmp = x;
+                        var tmplgth = tmp.length;
+                        var rndtmp = [];
+                        for (var i = 0; i < tmplgth; i++) {
+                            var n = Math.floor(Math.random() * (tmp.length-1));
+                            rndtmp.push(tmp[n]);
+                            tmp = $.grep(tmp, function(a){
+                              return a !== tmp[n] ;
+                            })
+
+
+                        }
+                        return rndtmp;
+                    }
+
+                    function ControlGame(){
+                      showStartPage
+                      display and answers
+                      run clock
+                      respond to choice
+                      game end
+
+
+
+                    }
+
+
+                    function displayQuestion
+                    // function runTimer() {
+                    //     var countDown = setInterval(decrement, 1000);
+                    // }
+                    //
+                    // function decrement() {
+                    //     countNum--;
+                    //     $(".timer").html(countNum);
+                    //     if (countNum === 0) {
+                    //         endQuestion(0);
+                    //     }
+                    // }
+                    //
+                    // function KeepTrackofWinsLosses() {
+                    //     $("#CurrentNumber").html(currentVal);
+                    //     $("#TotalWinsNumber").html(totalWins);
+                    //     $("#TotalLossesNumber").html(totalLosses);
+                    // }
+                    //
+                    // function endQuestion(gotit) {
+                    //     if (gotit === 0) {
+                    //         $(".timer").html("Times Up!");
+                    //         totalLosses = TotalLosses++;
+                    //     } else if (gotit === 1) {
+                    //         $(".timer").html("Oh bummer, wrong");
+                    //         totalLosses = TotalLosses++;
+                    //     } else if (gotit === 2) {
+                    //         $(".timer").html("RIGHT!!!");
+                    //     } else {
+                    //         $(".timer").html("Something's gone horribly wrong.  Let me send you to the next question.");
+                    //     }
+                    // }
+                    //
+                    // function showQs(q) {
+                    //     q.each()
+                    //     randomOrder(questions);
+                    //     var randomquestions = rndtmp;
+                    // }
+                    //
+                    // function showAs(x) {
+                    //
+                    //
+                    //
+                    //
+                    // }
+
+                    // This function randomizes the array inputted.
+                    // Used to control question order and answer order
+
+
+                })
+        </script>
 </body>
 
 </html>
