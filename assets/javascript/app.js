@@ -5,6 +5,7 @@ $(document).ready(function() {
             var question = "";
             var rightAnswer = "";
             var wrongAnswer = "";
+            var accessToken = ""
 
 var genres = {
     "70s Pop": ["spotify","00K2xasnm9pDQk53SzNCht"],
@@ -32,20 +33,21 @@ var genres = {
   }
 
   function prepSongs(x,y){
-
-
-    console.log(typeof(x));
-    console.log(genres[x][0]);
     var queryURL = "https://api.spotify.com/users/"+ genres[x][0]+"/playlists/"+ genres[x][1]
-    console.log(queryURL);
-    // $.Ajax{
-    //   url:https://api.spotify.com
-    //   method: "GET"
-    // }.
-  }
+
+}
 
 //Events
 //Starting Event
+var accessURL = "https://api.spotify.com/api/token?grant_type=client_credentials&token_type=bearerclient_id=093f7438d30340b4989ada26fdd4af7b&response_type=token&redirect_uri=http:%2f%2flocalhost:8888";
+
+$.ajax({
+  url: accessURL,
+  method: "POST",
+}).done(function(response){
+  var theResponse = response;
+  Console.log(theResponse);
+});
 writeStartButtons();
 
 //Click Events
@@ -53,28 +55,9 @@ writeStartButtons();
 // Click a genre to start the game
   $(".startButton").click(function(){
     prepSongs(this.id,this.value);
-    ;
   });
-
-
-
-
 })
-//
-//
-//
-//
-//   ))
-//
-// function
-//
-//
-//
-//
-//
-// }
-//
-//
+
 //             function getSongs
 //
 //
