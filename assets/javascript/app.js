@@ -42,78 +42,89 @@ $(document).ready(function() {
 
             function writeStartButtons() {
                 $.each(genres, function(k, v) {
-                    $("#startButtons").append("<button type='button' class='btn btn-primary btn-lg startButton' id='" + k + "' value='" + v + "'>" + k + "</button>");
+                    $("#startButtons").append("<button type='button' class='btn btn-primary startButton' id='" + k + "' value='" + v + "'>" + k + "</button>");
                 });
             }
 
-            function prepSongs(x, y) {
-                // first get 10 random songs from the genre
-                // to do that, get ten unique random numbers
-                // getRandomQuestions(x)
-                console.log(getRandomQuestions(x))
-                //  giveRandomArray()
-                console.log(x);
-
-                console.log(genres[x]);
-                console.log(y);
-                //  var thetitle = classicRock.length;
-                // console.log(classicRock.tracks.items[1].track.name);
-                // console.log(classicRock.tracks.items[1].track.artists[0].name);
-                // console.log(classicRock.tracks.items[1].track.album.name);
-                // console.log(classicRock.tracks.items[1].track.album.images[0].url);
-                // console.log(classicRock.tracks.items[1].track.href);
-                // console.log(classicRock.tracks.items[1].track.preview_url);
-            }
-
-
-
             //Events
             //Starting Event
-            console.log("j");
-            writeStartButtons();
 
-            //Click Events
+            writeStartButtons();
 
             // Click a genre to start the game
             $(".startButton").click(function() {
-                prepSongs(this.id, this.value);
-
+                runGame(this.id, this.value);
             });
-            //
-            // function randomOrder(x) {
-            //     var tmp = x;
-            //     var rndtmp = [];
-            //     for (var i = 0; i < tmp.length; i++) {
-            //         n = Math.floor((Math.random) * (tmp.length - 1));
-            //         rndtmp.push(tmp.splice(n, 1));
-            //     }
-            //     return rndtmp;
-            // }
 
-            function getRandomQuestions(p) {
-                console.log(genres[p][2].tracks.items);
-                var x = Math.floor((Math.random() * (genres[p][2].tracks.items).length) / 10);
-                console.log(x);
-                var songQ = [];
-                    var q = 0;
-                    if (songQ.length == 0) {
-                        q = 1;
-                    }
+            function runGame(k,v) {
+              // populate 4 buttons.
+              var songX = [];
+              var songY = [];
+              var rnd = 0
+              for (var z = 0; z<4; z++){
+                rnd = randomNumber((genres[k][2].tracks.items).length,1);
+                songY.push(genres[k][2].tracks.items[rnd].track.name;
+                songY.push(genres[k][2].tracks.items[rnd].track.artists[0].name;
+                songY.push(genres[k][2].tracks.items[rnd].track.album.images[0].url;
+                songY.push(genres[k][2].tracks.items[rnd].track.preview_url;
+                songX.push(songY);
+                $("songButtons").append("<button type='button' class='btn btn-primary btn-lg musicButton id='" + songY[4] + "' value='" + v + "'>" + + "</button>");
+              }
+
+                //songY[z].push(youtube)
+
+                // Make the song buttons
+                $("songButtons").append("<button type='button' class='btn btn-primary btn-lg musicButton id='" + k + "' value='" + v + "'>" +"</button>");
+
+
+
+
+
+
+
+
+
+
+              }
+
+
+              // play one of the four songButtons
+              //start the countDown
+              // on choice, determine if correct correct
+              //if timeout, that is a miss
+              //show right value in  green
+                // If wrong one shows, show in red
+              //calculate score
+
+                $("songButtons").append("<button type='button' class='btn btn-primary btn-lg musicButton' id='" + k + "' value='" + v + "'>" + k + "</button>");
+            });
+              }
+
                     $.each(genres[p][2].tracks.items, function() {
-                            if (q == x && songQ.length<10) {
-                                songD = [this.track.name, this.track.artists[0].name, this.track.album.name, this.track.album.images[0].url, this.track.preview_url];
-                                songQ.push(songD);
-                                q=1;
-                                x = Math.floor((Math.random() * (genres[p][2].tracks.items).length) / 10);
-                            }else{
-                              q++;
-                            }
+
+
+                            if (q == x && songQ.length<41) {
+
                     })
+
+                    //Now that songQ is fullthat the desk has been s
+                    //replace the artist/Titlefor three of them
+                    for (var g = 0; g < length-1; g++){
+                      var c = Math.floor((Math.random() * (genres[p][2].tracks.items).length);
+
+                    }
+                    SongQ[6][-1].push(true);
                     return songQ;
+                    }
 
             }
+})
 
-      })
+function randomNumber(hi,low){
+  var x = Math.floor((Math.random()*(hi - low) + 1);
+  return x
+}
+
 
 
 
@@ -123,6 +134,16 @@ $(document).ready(function() {
         // console.log(classicRock.tracks.items[1].track.preview_url);
 
 
+
+
+
+                        // var thetitle = classicRock.length;
+                        // console.log(classicRock.tracks.items[1].track.name);
+                        // console.log(classicRock.tracks.items[1].track.artists[0].name);
+                        // console.log(classicRock.tracks.items[1].track.album.name);
+                        // console.log(classicRock.tracks.items[1].track.album.images[0].url);
+                        // console.log(classicRock.tracks.items[1].track.href);
+                        // console.log(classicRock.tracks.items[1].track.preview_url)
 
 
 
