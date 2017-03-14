@@ -5494,6 +5494,3 @@ var seventiesPop = {
   "type" : "playlist",
   "uri" : "spotify:user:spotify:playlist:00K2xasnm9pDQk53SzNCht"
 }
-Developer Terms of Use
-About Jobs Press News
-Legal Cookies  AdChoices © 2007-2014 Spotify AB

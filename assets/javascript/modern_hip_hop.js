@@ -1,4 +1,4 @@
-vvar modernHipHop = {
+var modernHipHop = {
   "collaborative" : false,
   "description" : "Illest hiphop tracks selected by your realest Korean boi",
   "external_urls" : {
