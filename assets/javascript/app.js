@@ -126,7 +126,7 @@ $(document).ready(function() {
 		QuestionVars.songToPlay = QuestionVars.questionSongs[rnd];
 	} // end function
 
-	// Makes the Song buttons per question.
+	// Makes the Song buttons per question.  What the hell is wrong with this?
 	function makeSongButtons() {
 		for (var i = 0; i < 4; i++) {
 			if (QuestionVars.questionSongs[i][4] == QuestionVars.songToPlay[4]) {
@@ -142,6 +142,7 @@ $(document).ready(function() {
 		} //end for loop
 	} //end function
 
+	// plays for 10 seconds
 	function playSong() {
 		QuestionVars.songPlaying = new Audio(QuestionVars.songToPlay[3]);
 		QuestionVars.songPlaying.play();
@@ -158,6 +159,7 @@ $(document).ready(function() {
 		}, 1000);
 	} // end function
 
+	// this is not sussed out yet.
 	function stopQuestionWrong() {
 		clearInterval(QuestionVars.intervalId);
 		QuestionVars.songPlaying.pause();
