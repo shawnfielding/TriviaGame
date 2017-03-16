@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8">
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>    <!-- Optional theme -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!--Latest compiled and minified JavaScript-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css"> </head>
 
-<body>
-    <div class="jumbotron">
+  <body>
+    <div class="jumbotron text-center">
       <h1>Name That Tune!</h1>
+      <p>Test your knowledge of Musical Genres</p>
     </div>
     <div class="container">
-        <div class="row" id="GameDesc">
-            <div class="col-xs-12 col-md-offset-4 col-md-8  startPage" id="Statement">Choose a Genre, name the tune!
-            </div>
-            <div class="col-xs-12 col-md-offset-2 col-md-8 startPage" id="startButtons">
-            </div>
+      <div class="row">
+        <div class="col-xs-12 text-center" id="GenreStatement">Are you Ready? Choose a Genre.</div>
+      <div class="row">
+        <div class="col-xs-12" id="genreButtons">
+          <button type="button" class="btn btn-block startButton" id="70s Pop">70s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="80s Pop">80s Pop</button><button type="button" class="btn btn-primary btn-block startButton"
+              id="90s Pop">90s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="00s Pop">00s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Pop">Modern Pop</button><button type="button"
+              class="btn btn-primary btn-block startButton" id="Classic Indie">Classic Indie</button><button type="button" class="btn btn-primary btn-block startButton" id="90s Alt and Grunge">90s Alt and Grunge</button><button type="button" class="btn btn-primary btn-block startButton"
+              id="Trip Hop">Trip Hop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Indie">Modern Indie</button><button type="button" class="btn btn-primary btn-block startButton" id="Classic Rock">Classic Rock</button>
+          <button
+              type="button" class="btn btn-primary btn-block startButton" id="Glam Rock">Glam Rock</button><button type="button" class="btn btn-primary btn-block startButton" id="Classic Country">Classic Country</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Country">Modern Country</button>
+            <button
+                type="button" class="btn btn-primary btn-block startButton" id="80s Rap">80s Rap</button><button type="button" class="btn btn-primary btn-block startButton" id="Old School HipHop">Old School HipHop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern HipHop">Modern HipHop</button>
+              <button
+                  type="button" class="btn btn-primary btn-block startButton" id="Luke Cage">Luke Cage</button>
         </div>
-        <div class="row gamePage clockRow">
-            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage" id="clock">
-                Seconds of the clip remaining: <span id="seconds">0</span>
-            </div>
-        </div>
-        <div class="row" id="Game">
-            <div class="col-xs-12 col-md-offset-4 col-md-8 gamePage" id="songButtons">
-            </div>
-        </div>
+      </div>
+
+    </div>
+    <div class="row gamePage clockRow">
+      <div class="col-xs-12 col-md-offset-4 col-md-4 gamePage" id="clock">
+        <h2>SECONDS LEFT: <span id="secondsLeft"</span></h2></div>
+    </div>
+    <div class="row gamePage StatsRow">
+      <div class="col-xs-12 col-md-offset-4 col-md-4 gamePage" id="stats">
+        <table class="table-bordered">
+
+        </table>
+      </div>
+    </div>
     </div>
 
-        <!-- <div class="row top-buffer" id="timerArea">
+
+
+
+    </div>
+
+    <!-- <div class="row top-buffer" id="timerArea">
             <div class="col-xs-12 col-sm-3 col-sm-offset-3">
                 <p> Total Wins: <span name="totalWinsNumber" id="TotalWinsNumber"></span></p>
                 <p> Total Losses: <span name="TotalLossesNumber" id="TotalLossesNumber"></span></p>
@@ -47,24 +68,24 @@
             </div>
         </div> -->
 
-        <script src="assets/javascript/00s_pop.js"></script>
-        <script src="assets/javascript/70s_pop.js"></script>
-        <script src="assets/javascript/80s_pop.js"></script>
-        <script src="assets/javascript/80s_rap.js"></script>
-        <script src="assets/javascript/90s_alt_grunge.js"></script>
-        <script src="assets/javascript/90s_pop.js"></script>
-        <script src="assets/javascript/classic_country.js"></script>
-        <script src="assets/javascript/classic_indie.js"></script>
-        <script src="assets/javascript/classic_rock.js"></script>
-        <script src="assets/javascript/glam_rock.js"></script>
-        <script src="assets/javascript/luke_cage_soundtrack.js"></script>
-        <script src="assets/javascript/modern_country.js"></script>
-        <script src="assets/javascript/modern_hip_hop.js"></script>
-        <script src="assets/javascript/modern_indie.js"></script>
-        <script src="assets/javascript/modern_pop.js"></script>
-        <script src="assets/javascript/old_school_hip_hop.js"></script>
-        <script src="assets/javascript/trip_hop.js"></script>
-        <script src="assets/javascript/app.js"></script>
-</body>
+    <script src="assets/javascript/00s_pop.js"></script>
+    <script src="assets/javascript/70s_pop.js"></script>
+    <script src="assets/javascript/80s_pop.js"></script>
+    <script src="assets/javascript/80s_rap.js"></script>
+    <script src="assets/javascript/90s_alt_grunge.js"></script>
+    <script src="assets/javascript/90s_pop.js"></script>
+    <script src="assets/javascript/classic_country.js"></script>
+    <script src="assets/javascript/classic_indie.js"></script>
+    <script src="assets/javascript/classic_rock.js"></script>
+    <script src="assets/javascript/glam_rock.js"></script>
+    <script src="assets/javascript/luke_cage_soundtrack.js"></script>
+    <script src="assets/javascript/modern_country.js"></script>
+    <script src="assets/javascript/modern_hip_hop.js"></script>
+    <script src="assets/javascript/modern_indie.js"></script>
+    <script src="assets/javascript/modern_pop.js"></script>
+    <script src="assets/javascript/old_school_hip_hop.js"></script>
+    <script src="assets/javascript/trip_hop.js"></script>
+    <script src="assets/javascript/app.js"></script>
+  </body>
 
 </html>
