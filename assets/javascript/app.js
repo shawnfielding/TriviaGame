@@ -57,29 +57,27 @@ $(document).ready(function() {
 	// ----- Functions running the game ---------
 	// Controls the order of activity after a genre is chosen
 	function setUpGame() {
-		$("#genreButtons1").hide(1000);
-		$("#genreButtons2").hide(1000);
-		$("#genreStatement").html("<h2>" + k + " Quiz</h2>");
-		$()
+		//$("#genreButtons1").children().hide(1000);
+		//$("#genreButtons2").children().hide(1000);
+		$("#genreStatement").html("<h2>" + GameVars.gameGenre + " Quiz</h2>");
 	}
 
 	function gameStart(k) {
 		newGameVariables(k);
-		if (playedBefore === 1) {
+		if (SessionVars.playedBefore === 1) {
 			setGameVariables(k)
 		} // end if
 		runQuestions(k)
 		//end for loop
 	}
 	// sets or reset the variables for the game
-	function NewGameVariables(genre) {
+	function newGameVariables(genre) {
 		Genres[genre][1] = Genres[genre][1] + 1;
 		GameVars.questionsLeft = 10;
 		GameVars.gameScore = 0;
 		GameVars.gameQuestionsRight = 0;
 		GameVars.gameQuestionsWrong = 0;
 		GameVars.gameGenre = genre;
-
 	}
 
 	// resets the global variables after each question
@@ -130,13 +128,17 @@ $(document).ready(function() {
 
 	// Makes the Song buttons per question.
 	function makeSongButtons() {
-		$("#Buttons").html("");
 		for (var i = 0; i < 4; i++) {
-			if (QuestionVars.questionsSongs[i][4] == QuestionVars.songPlayingsongToPlay[4]) {
-				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionRight()'>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
+			if (QuestionVars.questionSongs[i][4] == QuestionVars.songToPlay[4]) {
+				console.log(QuestionVars.questionSongs[i][4] + " " + typeof QuestionVars.questionSongs[i][4]);
+				console.log(QuestionVars.songToPlay[4] + " " + typeof QuestionVars.songToPlay[4]);
+				$("#gameColumn").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionRight()'>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
 			} else {
-				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionWrong()>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
+				console.log(QuestionVars.questionSongs[i][4] + " " + typeof QuestionVars.questionSongs[i][4]);
+				console.log(QuestionVars.songToPlay[4] + " " + typeof QuestionVars.songToPlay[4]);
+				$("#gameColumn").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionWrong()'>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
 			} // end if
+
 		} //end for loop
 	} //end function
 
@@ -148,7 +150,7 @@ $(document).ready(function() {
 	// Counts down from 10
 	function CountDown() {
 		QuestionVars.intervalId = setInterval(function() {
-			QuestionVars.theSeconds = theSeconds - 1;
+			QuestionVars.theSeconds = QuestionVars.theSeconds - 1;
 			$("#secondsLeft").html(QuestionVars.theSeconds);
 			if (QuestionVars.theSeconds === 0) {
 				stopQuestionWrong();
@@ -158,19 +160,19 @@ $(document).ready(function() {
 
 	function stopQuestionWrong() {
 		clearInterval(QuestionVars.intervalId);
-		QuestionVars.ongPlaying.pause();
+		QuestionVars.songPlaying.pause();
 		showQuestionResult("wrong")
 	}
 
 	function stopQuestionRight() {
-		c
 		QuestionVars.songPlaying.pause();
 		showQuestionResult("right")
 	}
 
 	function showQuestionResult(n) {
-		sessionVars.playedBefore = true;
+		SessionVars.playedBefore = true;
 		clearInterval(QuestionVars.intervalId);
+
 	}
 
 	// Just the random number controller
@@ -183,36 +185,9 @@ $(document).ready(function() {
 
 	//This starts the whole shbang
 
-	writeTable();
-
-
 	$(".startButton").click(function() {
 		setUpGame(this.id);
 		gameStart(this.id);
 	});
 
 })
-
-// called every time a variable changes.
-// function updateVariablesHtml(k,v) {
-// 	TotalVars.Genres[k][0] = Genres[k][0] + TotalVars.theSeconds;
-// 	TotalVars.totalCorrect:
-// 	TotalVars.TotalVars.: 0,
-// 		totalaverage: 0,
-// 		playedBefore: false,
-// 		TotalVars.totalscore = TotalScores.totalscore + Genres[k][0];
-// 	TotalVars.right = TotalScores.totalscore + theSeconds;
-// 	GameVariables.questionsLeft = 10;
-// 	GameVariables.gameScore = 0;
-// 	GameVariables.gameQuestionsRight = 0;
-// 	GameVariables.gameQuestionsWrong = 0;
-// 	GameVariables.gameGenre = genre;
-// 	QuestionVars.questionSongs = []; // houses the arrays of songs for a question
-// 	QuestionVars.songPlaying = null; // Audio object
-// 	QuestionVars.songToPlay = ""; // the song that is going to play
-// 	QuestionVars.intervalId = ""; //used to run the timer at decrements
-// 	QuestionVars.theSeconds = 10; //used to track seconds left and points
-// 	QuestionVars.questionSongs = []; // houses the arrays of songs for a question
-// 	QuestionVars.songPlaying = ""; // Audio object
-// 	QuestionVars.songToPlay = ""; // the song that is going to play
-// }
