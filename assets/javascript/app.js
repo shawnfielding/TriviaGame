@@ -57,8 +57,8 @@ $(document).ready(function() {
 	// ----- Functions running the game ---------
 	// Controls the order of activity after a genre is chosen
 	function setUpGame() {
-		//$("#genreButtons1").children().hide(1000);
-		//$("#genreButtons2").children().hide(1000);
+		$("#genreButtons1").children().hide(1000);
+		$("#genreButtons2").children().hide(1000);
 		$("#genreStatement").html("<h2>" + GameVars.gameGenre + " Quiz</h2>");
 	}
 
