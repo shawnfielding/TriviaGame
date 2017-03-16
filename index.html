@@ -20,35 +20,144 @@
       <h1>Name That Tune!</h1>
       <p>Test your knowledge of Musical Genres</p>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 text-center" id="GenreStatement">Are you Ready? Choose a Genre.</div>
-      <div class="row">
-        <div class="col-xs-12" id="genreButtons">
-          <button type="button" class="btn btn-block startButton" id="70s Pop">70s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="80s Pop">80s Pop</button><button type="button" class="btn btn-primary btn-block startButton"
-              id="90s Pop">90s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="00s Pop">00s Pop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Pop">Modern Pop</button><button type="button"
-              class="btn btn-primary btn-block startButton" id="Classic Indie">Classic Indie</button><button type="button" class="btn btn-primary btn-block startButton" id="90s Alt and Grunge">90s Alt and Grunge</button><button type="button" class="btn btn-primary btn-block startButton"
-              id="Trip Hop">Trip Hop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Indie">Modern Indie</button><button type="button" class="btn btn-primary btn-block startButton" id="Classic Rock">Classic Rock</button>
-          <button
-              type="button" class="btn btn-primary btn-block startButton" id="Glam Rock">Glam Rock</button><button type="button" class="btn btn-primary btn-block startButton" id="Classic Country">Classic Country</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern Country">Modern Country</button>
-            <button
-                type="button" class="btn btn-primary btn-block startButton" id="80s Rap">80s Rap</button><button type="button" class="btn btn-primary btn-block startButton" id="Old School HipHop">Old School HipHop</button><button type="button" class="btn btn-primary btn-block startButton" id="Modern HipHop">Modern HipHop</button>
-              <button
-                  type="button" class="btn btn-primary btn-block startButton" id="Luke Cage">Luke Cage</button>
+    <div class="container" class="statsContainer">
+      <div class="row" class="StatsRow">
+        <div class="col-xs-12 col-md-6">
+          <table class="table table-bordered">
+            <thead class="statsCells">
+              <tr class="statsHead" >
+                <th>Genre</th>
+                <th>Total Score</th>
+                <th>Score/Question</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="statsRow" id="row70sPop">
+                <td class="statsCells" id="genre70sPop">70s Pop</td>
+                <td class="statsCells" id="score70sPop"</td>
+                <td class="statsCells" id="avg70sPop"></td>
+              </tr>
+              <tr class="statsRow" id="row80sPop">
+                <td class="statsCells" id="genre80sPop">80s Pop</td>
+                <td class="statsCells" id="score80sPop"></td>
+                <td class="statsCells" id="avg80sPop"></td>
+              </tr>
+              <tr class="statsRow" id="row90sPop">
+                <td class="statsCells" id="genre90sPop">90s Pop</td>
+                <td class="statsCells" id="score90sPop">0</td>
+                <td class="statsCells" id="avg90sPop">0</td>
+              </tr>
+              <tr class="statsRow" id="row00sPop">
+                <td class="statsCells" id="genre00sPop">00s Pop</td>
+                <td class="statsCells" id="score00sPop">0</td>
+                <td class="statsCells" id="avg00sPop">0</td>
+              </tr>
+              <tr class="statsRow" id="rowModernPop">
+                <td class="statsCells" id="genreModernPop">Modern Pop</td>
+                <td class="statsCells" id="scoreModernPop">0</td>
+                <td class="statsCells" id="avgModernPop">0</td>
+              </tr>
+              <tr class="statsRow" id="rowClassicIndie">
+                <td class="statsCells" id="genreClassicIndie">Classic Indie</td>
+                <td class="statsCells" id="scoreClassicIndie">0</td>
+                <td class="statsCells" id="avgClassicIndie">0</td>
+              </tr>
+              <tr class="statsRow" id="row90sAlt">
+                <td class="statsCells" id="genre90sAlt">90s Alt and Grunge</td>
+                <td class="statsCells" id="score90sAlt">0</td>
+                <td class="statsCells" id="avg90sAlt">0</td>
+              </tr>
+              <tr class="statsRow" id="rowTripHop">
+                <td class="statsCells" id="genreTripHop">Trip Hop</td>
+                <td class="statsCells" id="scoreTripHop">0</td>
+                <td class="statsCells" id="avgTripHop">0</td>
+              </tr>
+              <tr class="statsRow" id="rowModernIndie">
+                <td class="statsCells" id="genreModernIndie">Modern Indie</td>
+                <td class="statsCells" id="scoreModernIndie">0</td>
+                <td class="statsCells" id="avgModernIndie">0</td>
+              </tr>
+              <tr class="statsRow" id="rowClassicRock">
+                <td class="statsCells" id="genreClassicRock">Classic Rock</td>
+                <td class="statsCells" id="scoreClassicRock">0</td>
+                <td class="statsCells" id="avgClassicRock">0</td>
+              </tr>
+              <tr class="statsRow" id="rowGlamRock">
+                <td class="statsCells" id="genreGlamRock">Glam Rock</td>
+                <td class="statsCells" id="scoreGlamRock">0</td>
+                <td class="statsCells" id="avgGlamRock">0</td>
+              </tr>
+              <tr class="statsRow" id="rowClassicCountry">
+                <td class="statsCells" id="genreClassicCountry">Classic Country</td>
+                <td class="statsCells" id="scoreClassicCountry">0</td>
+                <td class="statsCells" id="avgClassicCountry">0</td>
+              </tr>
+              <tr class="statsRow" id="rowModernCountry">
+                <td class="statsCells" id="genreModernCountry">Modern Country</td>
+                <td class="statsCells" id="scorModernCountry">0</td>
+                <td class="statsCells" id="avgModernCountry">0</td>
+              </tr>
+              <tr class="statsRow" id="row80sRap">
+                <td class="statsCells" id="genre80sRap">80s Rap</td>
+                <td class="statsCells" id="score80sRap">0</td>
+                <td class="statsCells" id="avg80sRap">0</td>
+              </tr>
+              <tr class="statsRow" id="rowOldSchoolHipHop">
+                <td class="statsCells" id="genreOldSchoolHipHop">Old School HipHop</td>
+                <td class="statsCells" id="scoreOldSchoolHipHop">0</td>
+                <td class="statsCells" id="avgOldSchoolHipHop">0</td>
+              </tr>
+              <tr class="statsRow" id="rowModernHipHop">
+                <td class="statsCells" id="genrerowModernHipHop">Modern HipHop</td>
+                <td class="statsCells" id="scorerowModernHipHop">0</td>
+                <td class="statsCells" id="avgrowModernHipHop">0</td>
+              </tr>
+              <tr class="statsRow" id="rowLukeCage">
+                <td class="statsCells" id="genreLukeCage">Luke Cage</td>
+                <td class="statsCells" id="scoreLukeCage">0</td>
+                <td class="statsCells" id="avgLukeCage">0</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
         </div>
       </div>
-
+    </div>
+    <div class="col-xs-12 text-center" id="genreStatement">
+      <h2>Are you Ready? Choose a Genre.</h2>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 text-right" id="genreButtons1">
+        <button type="button" class="btn btn-primary  startButton" id="70s Pop">70s Pop</button><button type="button" class="btn btn-primary startButton" id="80s Pop">80s Pop</button><button type="button" class="btn btn-primary startButton" id="90s Pop">90s Pop</button>
+        <button type="button" class="btn btn-primary startButton" id="00s Pop">00s Pop</button><button type="button" class="btn btn-primary startButton" id="Modern Pop">Modern Pop</button><button type="button" class="btn btn-primary startButton" id="Classic Indie">Classic Indie</button>
+        <button
+            type="button" class="btn btn-primary startButton" id="90s Alt and Grunge">90s Alt and Grunge</button><button type="button" class="btn btn-primary startButton" id="Trip Hop">Trip Hop</button><button type="button" class="btn btn-primary startButton" id="Modern Indie">Modern Indie</button>
+          <button type="button" class="btn btn-primary startButton" id="Glam Rock">Glam Rock</button>
+      </div>
+      <div class="col-xs-3 col-xs-3 text-right" id="genreButtons1">
+        <button type="button" class="btn btn-primary  startButton" id="70s Pop">70s Pop</button><button type="button" class="btn btn-primary startButton" id="80s Pop">80s Pop</button><button type="button" class="btn btn-primary startButton" id="90s Pop">90s Pop</button>
+        <button type="button" class="btn btn-primary startButton" id="00s Pop">00s Pop</button><button type="button" class="btn btn-primary startButton" id="Modern Pop">Modern Pop</button><button type="button" class="btn btn-primary startButton" id="Classic Indie">Classic Indie</button>
+        <button
+            type="button" class="btn btn-primary startButton" id="90s Alt and Grunge">90s Alt and Grunge</button><button type="button" class="btn btn-primary startButton" id="Trip Hop">Trip Hop</button><button type="button" class="btn btn-primary startButton" id="Modern Indie">Modern Indie</button>
+          <button type="button" class="btn btn-primary startButton" id="Glam Rock">Glam Rock</button>
+      </div>
+      <div class="col-xs-3 text-left" id="genreButtons">
+        <button type="button" class="btn btn-primary startButton" id="Classic Rock">Classic Rock</button><button type="button" class="btn btn-primary startButton" id="Classic Country">Classic Country</button><button type="button" class="btn btn-primary startButton"
+            id="Modern Country">Modern Country</button>
+        <button type="button" class="btn btn-primary startButton" id="80s Rap">80s Rap</button><button type="button" class="btn btn-primary startButton" id="Old School HipHop">Old School HipHop</button><button type="button" class="btn btn-primary startButton"
+            id="Modern HipHop">Modern HipHop</button>
+        <button type="button" class="btn btn-primary startButton" id="Luke Cage">Luke Cage</button>
+      </div>
     </div>
     <div class="row gamePage clockRow">
       <div class="col-xs-12 col-md-offset-4 col-md-4 gamePage" id="clock">
-        <h2>SECONDS LEFT: <span id="secondsLeft"</span></h2></div>
-    </div>
-    <div class="row gamePage StatsRow">
-      <div class="col-xs-12 col-md-offset-4 col-md-4 gamePage" id="stats">
-        <table class="table-bordered">
-
-        </table>
+        <h2>Points: <span id="secondsLeft"</span></h2>
       </div>
+    </div>
+    </div>
     </div>
     </div>
 

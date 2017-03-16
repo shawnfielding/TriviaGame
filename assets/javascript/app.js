@@ -3,10 +3,8 @@ $(document).ready(function() {
 	// ----Genre Objects with 100 songs a piece.
 	// ----Keeps track of Genre Scores too.
 	// Note: I had the values in Arrays already.  Didn't have time too convert.
-
-
-
-	var genres = {
+	// ---- Session Variables and Objects - reset after end of Game ------------
+	var Genres = {
 		"70s Pop": [0, 0, 0, seventiesPop],
 		"80s Pop": [0, 0, 0, eightiesPop],
 		"90s Pop": [0, 0, 0, ninetiesPop],
@@ -26,63 +24,84 @@ $(document).ready(function() {
 		"Luke Cage": [0, 0, 0, lukeCageSoundtrack]
 	}
 
-	var playedBefore = 0;
+	var SessionVars = {
+		totalScore: 0,
+		totalCorrect: 0,
+		totalWrong: 0,
+		totalaverage: 0,
+		playedBefore: false,
+	}
 
+	function resetIntro() {
+		$("#genreStatement").html("<h2>Are you Ready? Choose a Genre.</h2>");
+		$('.startButton').fadeIn(1000);
+	}
 	// ---- Game Variables - reset after end of Game ------------
-	var questionsLeft = 10;
-	var gameScore = 0;
-	var gameQuestionsRight = 0;
-	var gameQuestionsWrong = 0;
-
+	var GameVars = {
+		questionsLeft: 10,
+		gameScore: 0,
+		gameQuestionsRight: 0,
+		gameQuestionsWrong: 0,
+		gameGenre: ""
+	}
 	// ---Question Variables - reset after every question--
-	var questionSongs = []; // houses the arrays of songs for a question
-	var songPlaying; // Audio object
-	;
-	var songToPlay = ""; // the song that is going to play
+	var QuestionVars = {
+		questionSongs: [], // houses the arrays of songs for a question
+		songPlaying: null, // Audio object
+		songToPlay: "", // the song that is going to play
+		IntervalID: "", //used to run the timer at decrements
+		theSeconds: 10, // what the timer is set at at the start.
+	}
 
-	// ------- Timer Variables: reset pretty much all the time   ---------
-	var IntervalID; //used to run the timer at decrements
-	var theSeconds = 10; // what the timer is set at at the start.
 
 	// ----- Functions running the game ---------
 	// Controls the order of activity after a genre is chosen
+	function setUpGame() {
+		$("#genreButtons1").hide(1000);
+		$("#genreButtons2").hide(1000);
+		$("#genreStatement").html("<h2>" + k + " Quiz</h2>");
+		$()
+	}
 
-
-	function gameStart(k, v) {
-		$('.startButton').fadeOut()
+	function gameStart(k) {
+		newGameVariables(k);
 		if (playedBefore === 1) {
 			setGameVariables(k)
 		} // end if
-		console.log(k)
 		runQuestions(k)
 		//end for loop
 	}
 	// sets or reset the variables for the game
-	function setGameVariables(genre) {
-		questionsLeft = 10;
-		gameScore = 0;
-		gameQuestionsRight = 0;
-		gameQuestionsWrong = 0;
-		gameGenre = k;
-		$("#QuestionStatement").html("<h2>What song is this in genre " +
-			k + "</h2>");
+	function NewGameVariables(genre) {
+		Genres[genre][1] = Genres[genre][1] + 1;
+		GameVars.questionsLeft = 10;
+		GameVars.gameScore = 0;
+		GameVars.gameQuestionsRight = 0;
+		GameVars.gameQuestionsWrong = 0;
+		GameVars.gameGenre = genre;
+
 	}
 
 	// resets the global variables after each question
-	function setQuestionVariables() {
-		questionSongs = []; // houses the arrays of songs for a question
-		songPlaying = ""; // Audio object
-		songToPlay = ""; // the song that is going to play
+	function NewQuestionVariables() {
+		QuestionVars.questionSongs = []; // houses the arrays of songs for a question
+		QuestionVars.songPlaying = null; // Audio object
+		QuestionVars.songToPlay = ""; // the song that is going to play
+		QuestionVars.intervalId = ""; //used to run the timer at decrements
+		QuestionVars.theSeconds = 10; //used to track seconds left and points
+		QuestionVars.questionSongs = []; // houses the arrays of songs for a question
+		QuestionVars.songPlaying = ""; // Audio object
+		QuestionVars.songToPlay = ""; // the song that is going to play
 	}
-	// ------- Functions running the questions ---------
 
+	// ------- Functions running the questions ---------
 	// Controls the cycling of questions
 	function runQuestions(k) {
 		getSongs(k);
 		chooseSongToPlay();
 		makeSongButtons();
 		playSong();
-		var countDown = CountDown();
+		CountDown();
 	} //end function
 
 	// Chooses the songs for each question
@@ -90,15 +109,15 @@ $(document).ready(function() {
 		console.log(k)
 		var singleSong = []; // create the array of datapoints for a question
 		for (var i = 0; i < 4; i++) {
-			var maxnum = (genres[k][3].tracks.items).length
+			var maxnum = (Genres[k][3].tracks.items).length
 			console.log(maxnum)
 			var rnd = randomNumber(maxnum - 1, 1); //needed a random number variable.
-			singleSong.push(genres[k][3].tracks.items[rnd].track.name);
-			singleSong.push(genres[k][3].tracks.items[rnd].track.artists[0].name);
-			singleSong.push(genres[k][3].tracks.items[rnd].track.album.images[0].url);
-			singleSong.push(genres[k][3].tracks.items[rnd].track.preview_url);
-			singleSong.push(genres[k][3].tracks.items[rnd].track.id);
-			questionSongs.push(singleSong);
+			singleSong.push(Genres[k][3].tracks.items[rnd].track.name);
+			singleSong.push(Genres[k][3].tracks.items[rnd].track.artists[0].name);
+			singleSong.push(Genres[k][3].tracks.items[rnd].track.album.images[0].url);
+			singleSong.push(Genres[k][3].tracks.items[rnd].track.preview_url);
+			singleSong.push(Genres[k][3].tracks.items[rnd].track.id);
+			QuestionVars.questionSongs.push(singleSong);
 			singleSong = [];
 		} // end for loop
 	} // end function
@@ -106,61 +125,94 @@ $(document).ready(function() {
 	// Chooses which song to play.
 	function chooseSongToPlay() {
 		var rnd = randomNumber(3, 0);
-		songToPlay = questionSongs[rnd];
+		QuestionVars.songToPlay = QuestionVars.questionSongs[rnd];
 	} // end function
 
 	// Makes the Song buttons per question.
 	function makeSongButtons() {
 		$("#Buttons").html("");
 		for (var i = 0; i < 4; i++) {
-			if (questionsSongs[i][4] == songToPlay[4]) {
-				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionRight()'>" + questionSongs[i][0] + " by " + questionSongs[i][1] + "</button>");
+			if (QuestionVars.questionsSongs[i][4] == QuestionVars.songPlayingsongToPlay[4]) {
+				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionRight()'>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
 			} else {
-				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionWrong()>" + questionSongs[i][0] + " by " + questionSongs[i][1] + "</button>");
+				$("#Buttons").append("<button type='button' class='btn btn-primary btn-lg songButton' onclick='stopQuestionWrong()>" + QuestionVars.questionSongs[i][0] + " by " + QuestionVars.questionSongs[i][1] + "</button>");
 			} // end if
 		} //end for loop
 	} //end function
 
 	function playSong() {
-		songPlaying = new Audio(songToPlay[3]);
-		songPlaying.play();
+		QuestionVars.songPlaying = new Audio(QuestionVars.songToPlay[3]);
+		QuestionVars.songPlaying.play();
 	}
 
 	// Counts down from 10
 	function CountDown() {
-		intervalID = setInterval(function() {
-			theSeconds = theSeconds - 1;
-			$("#secondsLeft").html(theSeconds);
-			if (theSeconds === 0) {
-				stopQuestion();
+		QuestionVars.intervalId = setInterval(function() {
+			QuestionVars.theSeconds = theSeconds - 1;
+			$("#secondsLeft").html(QuestionVars.theSeconds);
+			if (QuestionVars.theSeconds === 0) {
+				stopQuestionWrong();
 			} // end if
 		}, 1000);
 	} // end function
 
 	function stopQuestionWrong() {
-		clearInterval(intervalID);
-		songPlaying.pause();
+		clearInterval(QuestionVars.intervalId);
+		QuestionVars.ongPlaying.pause();
+		showQuestionResult("wrong")
 	}
 
 	function stopQuestionRight() {
-		clearInterval(intervalID);
-		songPlaying.pause();
+		c
+		QuestionVars.songPlaying.pause();
+		showQuestionResult("right")
+	}
 
+	function showQuestionResult(n) {
+		sessionVars.playedBefore = true;
+		clearInterval(QuestionVars.intervalId);
 	}
 
 	// Just the random number controller
 	function randomNumber(hi, low) {
 		var x = Math.floor(Math.random() * (hi - low) + low);
 		console.log(x);
-		console.log(typeof x)
+		console.log(typeof x);
 		return x;
 	}
 
 	//This starts the whole shbang
 
+	writeTable();
+
+
 	$(".startButton").click(function() {
-		$("#genreButtons").hide(1000);
-		gameStart(this.id, this.value);
+		setUpGame(this.id);
+		gameStart(this.id);
 	});
 
 })
+
+// called every time a variable changes.
+// function updateVariablesHtml(k,v) {
+// 	TotalVars.Genres[k][0] = Genres[k][0] + TotalVars.theSeconds;
+// 	TotalVars.totalCorrect:
+// 	TotalVars.TotalVars.: 0,
+// 		totalaverage: 0,
+// 		playedBefore: false,
+// 		TotalVars.totalscore = TotalScores.totalscore + Genres[k][0];
+// 	TotalVars.right = TotalScores.totalscore + theSeconds;
+// 	GameVariables.questionsLeft = 10;
+// 	GameVariables.gameScore = 0;
+// 	GameVariables.gameQuestionsRight = 0;
+// 	GameVariables.gameQuestionsWrong = 0;
+// 	GameVariables.gameGenre = genre;
+// 	QuestionVars.questionSongs = []; // houses the arrays of songs for a question
+// 	QuestionVars.songPlaying = null; // Audio object
+// 	QuestionVars.songToPlay = ""; // the song that is going to play
+// 	QuestionVars.intervalId = ""; //used to run the timer at decrements
+// 	QuestionVars.theSeconds = 10; //used to track seconds left and points
+// 	QuestionVars.questionSongs = []; // houses the arrays of songs for a question
+// 	QuestionVars.songPlaying = ""; // Audio object
+// 	QuestionVars.songToPlay = ""; // the song that is going to play
+// }
